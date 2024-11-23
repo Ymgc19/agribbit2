@@ -4,7 +4,7 @@
 #' @export
 
 agri.read_census <- function(pref_code){
-  agribbitforwin::agri.collect_census(pref_code)
+  agribbit2::agri.collect_census(pref_code)
   if (pref_code <= 9){
     pref_code <- as.character(paste("0", pref_code, sep = ""))
   }
@@ -12,7 +12,7 @@ agri.read_census <- function(pref_code){
     pref_code <- pref_code
   }
   download_dir <- paste(as.character(pref_code), "農林業センサス2020", sep = "")
-  df <- agribbitforwin::agri.read_as_csv(download_dir)
+  df <- agribbit2::agri.read_as_csv(download_dir)
   unlink(download_dir, recursive = T)
   return(df)
 }

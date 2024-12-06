@@ -14,6 +14,8 @@ agri.read_census_2020 <- function(pref_code){
   download_dir <- paste(as.character(pref_code), "農林業センサス2020", sep = "")
   df <- agribbit2::agri.read_as_csv(download_dir)
   unlink(download_dir, recursive = T)
+  df <- df %>%
+    mutate(KEY_CODE = as.numeric(KEY_CODE))
   return(df)
 }
 

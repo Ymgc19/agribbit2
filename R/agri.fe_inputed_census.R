@@ -190,27 +190,27 @@ agri.fe_inputed_census <- function(df){
       # 保全している資源の数
       fe_hozen = hozen_nouchi + hozen_shinrin + hozen_tameike + hozen_kasen + hozen_haisui,
       # 資源の数
-      hozen_nouchi = case_when(
+      no_nouchi = case_when(
         T001072003 == 1 ~ 1,
         TRUE ~ 0
       ),
-      hozen_shinrin = case_when(
+      no_shinrin = case_when(
         T001072006 == 1 ~ 1,
         TRUE ~ 0
       ),
-      hozen_tameike = case_when(
+      no_tameike = case_when(
         T001072009 == 1 ~ 1,
         TRUE ~ 0
       ),
-      hozen_kasen = case_when(
+      no_kasen = case_when(
         T001072012 == 1 ~ 1,
         TRUE ~ 0
       ),
-      hozen_haisui = case_when(
+      no_haisui = case_when(
         T001072015 == 1 ~ 1,
         TRUE ~ 0
       ),
-      num_of_resource = hozen_nouchi + hozen_shinrin + hozen_tameike + hozen_kasen + hozen_haisui,
+      num_of_resource = 5 - (no_nouchi + no_shinrin + no_tameike + no_kasen + no_haisui),
       fe_mean_hozen = fe_hozen / num_of_resource,
       # 取り組み状況
       fe_torikumi = T001073001 + T001073003 + T001073005 + T001073007 + T001073009 + T001073011 + T001073013

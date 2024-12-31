@@ -162,55 +162,40 @@ agri.fe_inputed_census <- function(df){
 
       # 保全スコア
       # まずは保全状況をそれぞれいい感じにする
-      hozen_nouchi = case_when(
-        T001072001 == 1 ~ 1,
-#        T001072002 == 1 ~ -1,
-        TRUE ~ 0
+      hozen_nouchi = if_else(
+        T001072001 == 1, 1, 0
       ),
-      hozen_shinrin = case_when(
-        T001072004 == 1 ~ 1,
-#        T001072005 == 1 ~ -1,
-        TRUE ~ 0
+      hozen_shinrin = if_else(
+        T001072004 == 1, 1, 0
       ),
-      hozen_tameike = case_when(
-        T001072007 == 1 ~ 1,
-#        T001072008 == 1 ~ -1,
-        TRUE ~ 0
+      hozen_tameike = if_else(
+        T001072007 == 1, 1, 0
       ),
-      hozen_kasen = case_when(
-        T001072010 == 1 ~ 1,
-#        T001072011 == 1 ~ -1,
-        TRUE ~ 0
+      hozen_kasen = if_else(
+        T001072010 == 1, 1, 0
       ),
-      hozen_haisui = case_when(
-        T001072013 == 1 ~ 1,
-#        T001072014 == 1 ~ -1,
-        TRUE ~ 0
+      hozen_haisui = if_else(
+        T001072013 == 1, 1, 0
       ),
       # 保全している資源の数
       fe_hozen = hozen_nouchi + hozen_shinrin + hozen_tameike + hozen_kasen + hozen_haisui,
-      # 資源の数
-      no_nouchi = case_when(
-        T001072003 == 1 ~ 1,
-        TRUE ~ 0
+      # 資源の数　存在する場合に1になる
+      no_nouchi = if_else(
+        T001072003 == 1, 0, 1
       ),
-      no_shinrin = case_when(
-        T001072006 == 1 ~ 1,
-        TRUE ~ 0
+      no_shinrin = if_else(
+        T001072006 == 1, 0, 1
       ),
-      no_tameike = case_when(
-        T001072009 == 1 ~ 1,
-        TRUE ~ 0
+      no_tameike = if_else(
+        T001072009 == 1, 0, 1
       ),
-      no_kasen = case_when(
-        T001072012 == 1 ~ 1,
-        TRUE ~ 0
+      no_kasen = if_else(
+        T001072012 == 1, 0, 1
       ),
-      no_haisui = case_when(
-        T001072015 == 1 ~ 1,
-        TRUE ~ 0
+      no_haisui = if_else(
+        T001072015 == 1, 0, 1
       ),
-      num_of_resource = 5 - (no_nouchi + no_shinrin + no_tameike + no_kasen + no_haisui),
+      num_of_resource = no_nouchi + no_shinrin + no_tameike + no_kasen + no_haisui,
       fe_mean_hozen = fe_hozen / num_of_resource,
       # 取り組み状況
       fe_torikumi = T001073001 + T001073003 + T001073005 + T001073007 + T001073009 + T001073011 + T001073013

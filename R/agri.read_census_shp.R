@@ -3,7 +3,7 @@
 #' @description \code{agri.read_census_shp}
 #' @export
 agri.read_census_shp <- function(pref_code){
-  agribbitforwin::agri.collect_shp(pref_code)
+  agribbit2::agri.collect_shp(pref_code)
   if (pref_code <= 9){
     pref_code <- as.character(paste("0", pref_code, sep = ""))
   }

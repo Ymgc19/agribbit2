@@ -40,7 +40,7 @@ agri.interpolate_importants <- function(df, thin = 2){
                 "T001066003", "T001066001"
   )
   for (i in 1:length(var_list)){
-    a <- agribbit::agri.interpolate_thinning(df, var_list[i], thin = thin)
+    a <- agribbit2::agri.interpolate_thinning(df, var_list[i], thin = thin)
     df <- a$inputed
     print(i / length(var_list))
   }
